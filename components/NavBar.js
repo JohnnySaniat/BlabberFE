@@ -14,7 +14,7 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>CHANGE ME</Navbar.Brand>
+          <Navbar.Brand>Blabber</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -23,8 +23,20 @@ export default function NavBar() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
-            <Link passHref href="/delete-me">
-              <Nav.Link>Delete Me</Nav.Link>
+            <Link passHref href="/all-posts">
+              <Nav.Link>All Posts</Nav.Link>
+            </Link>
+            <Link passHref href="/my-posts">
+              <Nav.Link>My Posts</Nav.Link>
+            </Link>
+            <Link passHref href="/categories">
+              <Nav.Link>Category Manager</Nav.Link>
+            </Link>
+            <Link passHref href="/tags">
+              <Nav.Link>Tag Manager</Nav.Link>
+            </Link>
+            <Link passHref href="/profile">
+              <Nav.Link>My Profile</Nav.Link>
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
