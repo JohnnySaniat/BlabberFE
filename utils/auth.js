@@ -9,15 +9,11 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then(async (res) => {
-      let data;
-      console.log('status:', res);
-      if (res.status === 204) {
-        resolve({});
+    .then((resp) => {
+      if (resp.ok) {
+        resolve(resp.json());
       } else {
-        data = await res.json();
-        console.log('data:', data);
-        resolve(data);
+        resolve({});
       }
     })
     .catch(reject);
@@ -46,7 +42,7 @@ const signOut = () => {
 };
 
 export {
-  signIn, //
+  signIn,
   signOut,
   checkUser,
   registerUser,
