@@ -53,6 +53,11 @@ button#sign-out {
   z-index: 1000; 
 }
 
+.search-bar {
+  width: 200px;
+  margin: 10px;
+}
+
 .navbar-nav .nav-item {
   margin-bottom: 10px;
 }

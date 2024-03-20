@@ -18,7 +18,7 @@ function ShowAllPosts() {
   return (
     <>
       <div className="text-center my-4">
-        <Link href="/post/new" passHref>
+        <Link href="http://localhost:3000/post/new" passHref>
           <Button className="post-card-button" variant="secondary">CREATE POST</Button>
         </Link>
         <div className="d-flex flex-wrap">
