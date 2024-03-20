@@ -6,6 +6,7 @@ import {
   Container,
   Nav,
   Button,
+  Image,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 
@@ -14,7 +15,10 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>Blabber</Navbar.Brand>
+          <Navbar.Brand className="d-flex align-items-center">
+            <span className="mr-2"> Blabber </span>
+            <Image className="navbar-logo" src="https://i.pinimg.com/originals/b6/77/73/b6777347a6a6ac60fb3e1f6f823a124b.png" fluid />
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -38,7 +42,7 @@ export default function NavBar() {
             <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
+            <Button variant="danger" id="sign-out" onClick={signOut}>
               Sign Out
             </Button>
           </Nav>
