@@ -113,6 +113,19 @@ const getPostByUid = (uid) => fetch(`https://localhost:7193/posts/users/${uid}`,
     throw error;
   });
 
+const searchPosts = (searchValue) => fetch(`https://localhost:7193/posts/search?searchValue=${searchValue}`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  });
+
 export {
   getAllPosts,
   getPostById,
@@ -122,4 +135,5 @@ export {
   removePostCategory,
   updatePostCategory,
   getPostByUid,
+  searchPosts,
 };

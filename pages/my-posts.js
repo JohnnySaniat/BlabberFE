@@ -22,6 +22,7 @@ function ShowMyPosts() {
   return (
     <>
       <div className="text-center my-4">
+
         <Link href="/post/new" passHref>
           <Button className="post-card-button" variant="secondary">CREATE POST</Button>
         </Link>
