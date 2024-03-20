@@ -3,30 +3,33 @@ import { useState, useEffect } from 'react';
 import {
   Button, FloatingLabel, Form,
 } from 'react-bootstrap';
-import { createPost } from '../../api/postData';
+import { useRouter } from 'next/router';
 import { getAllCategories } from '../../api/categoryData';
 import { useAuth } from '../../utils/context/authContext';
 import getUserDetails from '../../api/userData';
+import { updatePostById, createPost } from '../../api/postData';
 
 const initialState = {
   title: '',
   image: '',
-  categoryId: 0,
+  categoryId: '',
   content: '',
 };
 
 function ProductForm({ obj }) {
-  const [formInput, setFormInput] = useState(obj || initialState);
+  const [formInput, setFormInput] = useState(initialState);
   const [categoryList, setCategoryList] = useState([]);
   const { user } = useAuth();
-  const [userObj, setUserObj] = useState({});
+  const [userObj, setUserObj] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
-    getUserDetails(user.uid).then(setUserObj);
-    getAllCategories()
-      .then((categories) => setCategoryList(categories))
-      .catch((error) => console.error('Error fetching categories:', error));
-  }, []);
+    if (!user) return;
+
+    getUserDetails(user.uid)
+      .then(setUserObj)
+      .catch((error) => console.error('Error fetching user details:', error));
+  }, [user]);
 
   useEffect(() => {
     if (obj) {
@@ -36,16 +39,23 @@ function ProductForm({ obj }) {
     }
   }, [obj]);
 
+  useEffect(() => {
+    getAllCategories()
+      .then((categories) => setCategoryList(categories))
+      .catch((error) => console.error('Error fetching categories:', error));
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormInput((prevState) => ({
-      ...prevState,
+    setFormInput((prevInput) => ({
+      ...prevInput,
       [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const payload = {
       ...formInput,
       userId: userObj.id,
@@ -53,14 +63,22 @@ function ProductForm({ obj }) {
       approved: true,
       uid: user.uid,
     };
-    createPost(payload)
-      .then(() => {
-        console.log('Post created successfully');
-        console.warn(userObj);
-      })
-      .catch((error) => {
-        console.error('Error creating post:', error);
-      });
+
+    if (obj && obj.id) {
+      updatePostById(obj.id, payload)
+        .then(() => {
+          console.log('Post updated successfully');
+          router.push('/all-posts');
+        })
+        .catch((error) => console.error('Error updating post:', error));
+    } else {
+      createPost(payload)
+        .then(() => {
+          console.log('Post created successfully');
+          router.push('/all-posts');
+        })
+        .catch((error) => console.error('Error creating post:', error));
+    }
   };
 
   return (
@@ -89,12 +107,11 @@ function ProductForm({ obj }) {
         />
       </FloatingLabel>
 
-      <FloatingLabel controlId="categoryId" label="Category">
+      <FloatingLabel controlId="categoryId" label="Category" className="mb-3">
         <Form.Select
           aria-label="Category"
           name="categoryId"
           onChange={handleChange}
-          className="mb-3"
           value={formInput.categoryId}
           required
         >
@@ -118,7 +135,7 @@ function ProductForm({ obj }) {
         />
       </FloatingLabel>
 
-      <Button className="user-card-button" variant="danger" type="submit">{obj && obj.id ? 'Update' : 'Create'} Post</Button>
+      <Button variant="danger" type="submit">{obj && obj.id ? 'Update' : 'Create'} Post</Button>
     </Form>
   );
 }
@@ -128,7 +145,7 @@ ProductForm.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     image: PropTypes.string,
-    categoryId: PropTypes.number,
+    categoryId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     content: PropTypes.string,
   }),
 };
