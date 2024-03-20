@@ -13,6 +13,7 @@ function PostCard({ post, onUpdate }) {
         .then(() => {
           console.log(`Post with ID ${postId} deleted successfully`);
           onUpdate();
+          window.location.reload(); // Reload the page after successful delete
         })
         .catch((error) => {
           console.error('Error deleting post:', error.message);
@@ -27,8 +28,8 @@ function PostCard({ post, onUpdate }) {
         <Card.Title className="card-title">{post.title}</Card.Title>
         <Card.Text className="card-content">{post.content}</Card.Text>
         <p className="card-date"><strong>Date:</strong> {new Date(post.publicationDate).toLocaleDateString()}</p>
-        <p className="card-category"><strong>Category:</strong> {post.category}</p>
-        <p className="card-tags"><strong>Tags:</strong> {post.tags.map((tag) => tag.name).join(', ')}</p>
+        <p className="card-category"><strong>Category:</strong> {post.categoryId}</p>
+        <p className="card-tags"><strong>Tags:</strong> {post.tags.map((tag) => tag.label).join(', ')}</p>
 
         <Link href={`/post/edit/${post.id}`} passHref>
           <Button className="post-card-button" variant="secondary">EDIT</Button>
