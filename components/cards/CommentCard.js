@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function CommentCard({ commentObj }) {
   return (
     <Card key={commentObj.id} border="dark" style={{ width: '18rem' }}>
-      <Card.Header>@{commentObj.author.firstName}</Card.Header>
+      <Card.Header>@{commentObj.author}</Card.Header>
       <Card.Footer>{commentObj.createdOn}</Card.Footer>
       <Card.Body>
         <Card.Text>

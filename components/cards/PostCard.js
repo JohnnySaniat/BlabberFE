@@ -30,6 +30,9 @@ function PostCard({ post, onUpdate }) {
         <p className="card-category"><strong>Category:</strong> {post.category}</p>
         <p className="card-tags"><strong>Tags:</strong> {post.tags.map((tag) => tag.name).join(', ')}</p>
 
+        <Link href={`/post/${post.id}`} passHref>
+          <Button className="post-card-button" variant="dark">View</Button>
+        </Link>
         <Link href={`/post/edit/${post.id}`} passHref>
           <Button className="post-card-button" variant="secondary">EDIT</Button>
         </Link>

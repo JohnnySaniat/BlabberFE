@@ -1,6 +1,4 @@
-import { clientCredentials } from '../utils/client';
-
-const dbUrl = clientCredentials.databaseURL;
+const dbUrl = 'https://localhost:7193';
 
 const getPostComments = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/posts/${id}/comments`, {
