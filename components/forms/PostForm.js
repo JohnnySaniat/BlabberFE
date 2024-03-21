@@ -16,7 +16,7 @@ const initialState = {
   content: '',
 };
 
-function ProductForm({ obj }) {
+function PostForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [categoryList, setCategoryList] = useState([]);
   const { user } = useAuth();
@@ -140,7 +140,7 @@ function ProductForm({ obj }) {
   );
 }
 
-ProductForm.propTypes = {
+PostForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -150,8 +150,8 @@ ProductForm.propTypes = {
   }),
 };
 
-ProductForm.defaultProps = {
+PostForm.defaultProps = {
   obj: null,
 };
 
-export default ProductForm;
+export default PostForm;
