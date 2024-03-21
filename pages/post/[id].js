@@ -2,33 +2,33 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getPostById } from '../../api/postData';
 import CommentCard from '../../components/cards/CommentCard';
-import getPostComments from '../../api/commentData';
+import { getPostComments } from '../../api/commentData';
+import PostCommentForm from '../../components/forms/CommentForm';
 
 function PostDetails() {
   const [postDetails, setPostDetails] = useState({});
-  const [commentDetails, setCommentDetails] = useState({});
+  const [commentDetails, setCommentDetails] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
-  const getPostDetails = () => {
+  const getDetails = () => {
     getPostById(id).then(setPostDetails);
-  };
-  const getCommentDetails = () => {
     getPostComments(id).then(setCommentDetails);
   };
 
   useEffect(() => {
-    getPostDetails();
-    getCommentDetails();
+    getDetails();
   }, []);
 
-  console.log(commentDetails);
   return (
     <div>
       <div className="display-3 mt-5">{postDetails.title}</div>
       <div>{postDetails.content}</div>
       <div>
-        {commentDetails.comments?.map((comments) => (
+        <PostCommentForm postId={postDetails.id} key={commentDetails.id} />
+      </div>
+      <div>
+        {commentDetails[0]?.map((comments) => (
           <CommentCard commentObj={comments} key={comments.Id} />
         ))}
       </div>

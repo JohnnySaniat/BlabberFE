@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 function CommentCard({ commentObj }) {
   return (
     <Card key={commentObj.id} border="dark" style={{ width: '18rem' }}>
-      <Card.Header>@{commentObj.author}</Card.Header>
-      <Card.Footer>{commentObj.createdOn}</Card.Footer>
+      <div className="d-flex justify-content-between mx-4 mb-1 mt-2">
+        <h5>{commentObj.author}</h5>
+        <h6>{commentObj.createdOn}</h6>
+      </div>
       <Card.Body>
         <Card.Text>
           {commentObj.content}
@@ -19,9 +21,8 @@ function CommentCard({ commentObj }) {
 CommentCard.propTypes = {
   commentObj: PropTypes.shape({
     id: PropTypes.number,
-    authorId: PropTypes.string,
     content: PropTypes.string,
-    createdOn: PropTypes.number,
+    createdOn: PropTypes.string,
     author: PropTypes.string,
   }).isRequired,
 };
