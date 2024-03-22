@@ -8,11 +8,12 @@ import PostCommentForm from '../../components/forms/CommentForm';
 import formatDate from '../../utils/formatDate';
 import { getPostReactions } from '../../api/reactionData';
 import AddReactionForm from '../../components/forms/AddReactionForm';
+import PostReactionCard from '../../components/cards/PostReactionCard';
 
 function PostDetails() {
   const [postDetails, setPostDetails] = useState({});
   const [commentDetails, setCommentDetails] = useState([]);
-  const [reactionDetails, setReactionDetails] = useState([]);
+  const [reactionDetails, setReactionDetails] = useState({});
   const router = useRouter();
   const { id } = router.query;
 
@@ -27,8 +28,6 @@ function PostDetails() {
   }, []);
 
   const formattedDate = postDetails?.publicationDate ? formatDate(postDetails.publicationDate) : '';
-  // console.log(reactionDetails);
-  // console.log(reactionDetails[3]);
 
   return (
     <div className="d-flex justify-content-center flex-column content-box">
@@ -41,9 +40,6 @@ function PostDetails() {
           posted by: {postDetails.user?.firstName} {postDetails.user?.lastName} | {formattedDate}
         </div>
       </div>
-      <div className="top-right">
-        <AddReactionForm reaction={reactionDetails[3]} postId={postDetails.id} />
-      </div>
       <div className="d-flex flex-column gap-3">
         <div className="p-4 text-end">
           <div className="text-start">
@@ -55,6 +51,14 @@ function PostDetails() {
             <img src={postDetails.image} className="expansive" alt={postDetails.content} height={'auto'} style={{ maxHeight: '500px' }} />
           </div>
         </div>
+      </div>
+      <div className="mx-3">
+        <AddReactionForm reaction={reactionDetails[3]} postId={postDetails.id} />
+      </div>
+      <div className="reaction-container">
+        {reactionDetails[3]?.map((r) => (
+          <PostReactionCard reactionObj={r} />
+        ))}
       </div>
       <div className="mt-5 d-flex justify-content-center">
         <PostCommentForm postId={postDetails.id} key={commentDetails.id} />

@@ -5,8 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import { getUserDetails } from '../../api/userData';
+
 import { postComment, updateComment } from '../../api/commentData';
+import { getUserDetails } from '../../api/userData';
 
 const initialState = {
   postId: -1,
@@ -66,7 +67,7 @@ function PostCommentForm({ postId, obj }) {
       postComment(postId, payload)
         .then(() => {
           router.push(`/post/${postId}`);
-          // window.location.reload();
+          window.location.reload();
         })
         .then(() => setShow(false))
         .catch((error) => console.error('Error creating comment:', error));

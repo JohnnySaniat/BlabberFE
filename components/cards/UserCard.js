@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import formatDate from '../../utils/formatDate';
 
 export default function UserCard({ userObj }) {
   return (
@@ -14,7 +15,7 @@ export default function UserCard({ userObj }) {
           <p>Bio: {userObj.bio}</p>
           <p>Active: {userObj.active ? 'Yes' : 'No'}</p>
           <p>Staff: {userObj.isStaff ? 'Yes' : 'No'}</p>
-          <p>Member Since: {userObj.createdOn}</p>
+          <p>Member Since: {formatDate(userObj.createdOn)}</p>
           <Link href={`/user/edit/${userObj.id}`}>
             <Button variant="secondary">Edit Profile</Button>
           </Link>

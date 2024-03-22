@@ -1,6 +1,4 @@
-import { clientCredentials } from '../utils/client';
-
-const endpoint = clientCredentials.databaseURL;
+const endpoint = 'https://localhost:7193';
 
 const getTags = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/tags`, {

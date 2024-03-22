@@ -1,6 +1,4 @@
-import { clientCredentials } from '../utils/client';
-
-const endpoint = clientCredentials.databaseURL;
+const endpoint = 'https://localhost:7193';
 
 const newSubscription = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/subscription/new`, {

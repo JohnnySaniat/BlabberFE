@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
@@ -5,21 +6,16 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import { getUserDetails } from '../../api/userData';
 import { addReactionToPost, getReactions } from '../../api/reactionData';
 import PostReactionCard from '../cards/PostReactionCard';
+import { getUserDetails } from '../../api/userData';
 
-const initialState = {
-  reactionId: -1,
-};
-
-function AddReactionForm({ postId, reaction }) {
-  const [formInput, setFormInput] = useState(initialState);
+function AddReactionForm({ postId }) {
+  const [reactionId, setReactionId] = useState(-1);
   const { user } = useAuth();
   const [userObj, setUserObj] = useState(null);
   const router = useRouter();
   const [reactions, setReactions] = useState([]);
-  const [rid, setRid] = useState(-1);
 
   // modal functionality
   const [show, setShow] = useState(false);
@@ -34,23 +30,17 @@ function AddReactionForm({ postId, reaction }) {
       .catch((error) => console.error('Error fetching user details:', error));
 
     getReactions().then(setReactions);
-
-    if (reaction) {
-      setFormInput(reaction);
-    } else {
-      setFormInput(initialState);
-    }
-  }, [reaction]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
-      reactionId: rid,
+      reactionId,
       postId,
       userId: userObj.id,
     };
-    console.warn(formInput);
+
     addReactionToPost(postId, payload)
       .then(() => {
         console.log('reaction created successfully');
@@ -70,14 +60,16 @@ function AddReactionForm({ postId, reaction }) {
         <Form onSubmit={handleSubmit} className="p-3">
           <Form.Group className="mb-3 d-flex row" controlId="formBasicInput">
             <Form.Label className="text-black">Pick a reaction</Form.Label>
-            {reactions.map((r) => (
-              <Button className="blank" type="submit" onClick={() => setRid(r.id)}>
-                <PostReactionCard
-                  key={r.id}
-                  reactionObj={r}
-                />
-              </Button>
-            ))}
+            <div className="d-flex flex-wrap justify-content-center">
+              {reactions.map((r) => (
+                <Button className="blank" type="submit" onClick={() => setReactionId(r.id)}>
+                  <PostReactionCard
+                    key={r.id}
+                    reactionObj={r}
+                  />
+                </Button>
+              ))}
+            </div>
           </Form.Group>
         </Form>
       </Modal>
@@ -92,13 +84,11 @@ AddReactionForm.propTypes = {
     reactionId: PropTypes.number,
   }),
   postId: PropTypes.number,
-  // reactionId: PropTypes.number,
 };
 
 AddReactionForm.defaultProps = {
   reaction: null,
   postId: null,
-  // reactionId: null,
 };
 
 export default AddReactionForm;

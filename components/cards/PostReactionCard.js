@@ -1,13 +1,13 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 
-function PostReactionCard({ reactionObj }) {
+function PostReactionCard({ reactionObj, width, height }) {
   return (
-    <Card key={reactionObj.id} border="dark" style={{ width: '125px' }} className="m-auto mb-3">
+    <Card key={reactionObj.id} style={{ width: '50px', backgroundColor: 'transparent' }} className="m-auto mb-3">
       <div className="d-flex flex-column align-items-center mx-4 mb-1 mt-2">
-        <h5>{reactionObj.label}</h5>
-        <img src={reactionObj.image} alt="Uploaded reaction" width={50} height={50} />
+        <img src={reactionObj.image} alt="Uploaded reaction" width={width || 25} height={height || 25} />
       </div>
     </Card>
   );
@@ -19,6 +19,8 @@ PostReactionCard.propTypes = {
     image: PropTypes.string,
     label: PropTypes.string,
   }).isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 export default PostReactionCard;

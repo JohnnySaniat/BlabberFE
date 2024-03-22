@@ -204,3 +204,11 @@ body {
 .blank:hover {
   background-color: none;
 }
+
+.reaction-container {
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  right: 40%;
+  border: none;
+}
