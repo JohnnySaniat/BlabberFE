@@ -24,7 +24,13 @@ const postComment = (id, payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   }).then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -40,4 +46,20 @@ const updateComment = (postId, payload, commentId) => new Promise((resolve, reje
     .catch(reject);
 });
 
-export { getPostComments, postComment, updateComment };
+const deleteComment = (postId, commentId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/posts/${postId}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export {
+  getPostComments,
+  postComment,
+  updateComment,
+  deleteComment,
+};

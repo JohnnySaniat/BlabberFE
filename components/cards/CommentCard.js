@@ -1,8 +1,16 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
+import { deleteComment } from '../../api/commentData';
 
 function CommentCard({ commentObj }) {
+  const removeComment = () => {
+    if (window.confirm('Remove comment?')) {
+      deleteComment(commentObj.postId, commentObj.id).then(window.location.reload());
+    }
+  };
+
   return (
     <Card key={commentObj.id} border="dark" style={{ width: '18rem' }}>
       <div className="d-flex justify-content-between mx-4 mb-1 mt-2">
@@ -14,6 +22,7 @@ function CommentCard({ commentObj }) {
           {commentObj.content}
         </Card.Text>
       </Card.Body>
+      <Button variant="danger" onClick={removeComment}>Delete</Button>
     </Card>
   );
 }
@@ -24,6 +33,7 @@ CommentCard.propTypes = {
     content: PropTypes.string,
     createdOn: PropTypes.string,
     author: PropTypes.string,
+    postId: PropTypes.number,
   }).isRequired,
 };
 

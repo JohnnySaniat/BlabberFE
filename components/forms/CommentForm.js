@@ -81,9 +81,9 @@ function PostCommentForm({ postId, obj }) {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="p-3">
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Leave a comment</Form.Label>
+            <Form.Label className="text-black">Leave a comment</Form.Label>
             <Form.Control type="text" name="content" value={formInput.content} onChange={handleChange} placeholder="Leave a comment" />
           </Form.Group>
           <Button variant="primary" type="submit">
