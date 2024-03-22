@@ -82,11 +82,19 @@ function PostCommentForm({ postId, obj }) {
 
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit} className="p-3">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3 d-flex row" controlId="formBasicEmail">
             <Form.Label className="text-black">Leave a comment</Form.Label>
-            <Form.Control type="text" name="content" value={formInput.content} onChange={handleChange} placeholder="Leave a comment" />
+            <Form.Text className="secondary mb-3">Make sure you follow the rules before posting a comment publicly.<br />Rules: Be nice.</Form.Text>
+            <Form.Control
+              type="text"
+              autoComplete="off"
+              name="content"
+              value={formInput.content}
+              onChange={handleChange}
+              placeholder="Comment"
+            />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="success" className="float-end" type="submit">
             Send
           </Button>
         </Form>

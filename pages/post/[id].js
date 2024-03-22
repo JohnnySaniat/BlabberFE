@@ -27,7 +27,7 @@ function PostDetails() {
       <div>
         <PostCommentForm postId={postDetails.id} key={commentDetails.id} />
       </div>
-      <div>
+      <div className="d-flex gap-2 flex-column flex-sm-wrap">
         {commentDetails[0]?.map((comments) => (
           <CommentCard commentObj={comments} key={comments.Id} />
         ))}

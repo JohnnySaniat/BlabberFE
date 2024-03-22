@@ -15,14 +15,14 @@ function CommentCard({ commentObj }) {
     <Card key={commentObj.id} border="dark" style={{ width: '18rem' }}>
       <div className="d-flex justify-content-between mx-4 mb-1 mt-2">
         <h5>{commentObj.author}</h5>
-        <h6>{commentObj.createdOn}</h6>
+        <h5>{commentObj.createdOn}</h5>
       </div>
       <Card.Body>
         <Card.Text>
           {commentObj.content}
         </Card.Text>
       </Card.Body>
-      <Button variant="danger" onClick={removeComment}>Delete</Button>
+      <Button variant="danger" className="w-30 m-auto mb-1 mt-1" onClick={removeComment}>Delete</Button>
     </Card>
   );
 }
