@@ -18,10 +18,10 @@ function ViewReactions() {
   return (
     <>
       <div className="text-center my-4">
-        <Link href="http://localhost:3000/category/new" passHref>
-          <Button className="category-card-button" variant="secondary">CREATE CATEGORY</Button>
+        <Link href="http://localhost:3000/reaction/new" passHref>
+          <Button variant="dark" size="lg">CREATE REACTION</Button>
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center mt-3 gap-3">
           {reactions.map((reaction) => (
             <ReactionCard
               key={reaction.id}
