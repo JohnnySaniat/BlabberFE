@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import getUserDetails from '../../api/userData';
+import { getUserDetails } from '../../api/userData';
 import { addReactionToPost, getReactions } from '../../api/reactionData';
 import PostReactionCard from '../cards/PostReactionCard';
 
