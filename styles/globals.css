@@ -159,3 +159,13 @@ body {
   width: auto;
   filter: blur(0);
 }
+
+.blank {
+  border: 0;
+  background-color: transparent;
+  width: auto;
+}
+
+.blank:hover {
+  background-color: none;
+}

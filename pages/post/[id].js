@@ -6,16 +6,20 @@ import CommentCard from '../../components/cards/CommentCard';
 import { getPostComments } from '../../api/commentData';
 import PostCommentForm from '../../components/forms/CommentForm';
 import formatDate from '../../utils/formatDate';
+import { getPostReactions } from '../../api/reactionData';
+import AddReactionForm from '../../components/forms/AddReactionForm';
 
 function PostDetails() {
   const [postDetails, setPostDetails] = useState({});
   const [commentDetails, setCommentDetails] = useState([]);
+  const [reactionDetails, setReactionDetails] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
   const getDetails = () => {
     getPostById(id).then(setPostDetails);
     getPostComments(id).then(setCommentDetails);
+    getPostReactions(id).then(setReactionDetails);
   };
 
   useEffect(() => {
@@ -23,6 +27,8 @@ function PostDetails() {
   }, []);
 
   const formattedDate = postDetails?.publicationDate ? formatDate(postDetails.publicationDate) : '';
+  // console.log(reactionDetails);
+  // console.log(reactionDetails[3]);
 
   return (
     <div className="d-flex justify-content-center flex-column content-box">
@@ -34,6 +40,9 @@ function PostDetails() {
         <div className="text-secondary mb-1 fs-6 mx-2">
           posted by: {postDetails.user?.firstName} {postDetails.user?.lastName} | {formattedDate}
         </div>
+      </div>
+      <div className="top-right">
+        <AddReactionForm reaction={reactionDetails[3]} postId={postDetails.id} />
       </div>
       <div className="d-flex flex-column gap-3">
         <div className="p-4 text-end">

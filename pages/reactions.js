@@ -24,15 +24,11 @@ function ViewReactions() {
         </Link>
         <div className="d-flex flex-wrap justify-content-center mt-3 gap-3">
           {reactions.map((reaction) => (
-            <Link href={`/reaction/${reaction.id}`} passHref>
-              <a>
-                <ReactionCard
-                  key={reaction.id}
-                  reactionObj={reaction}
-                  onUpdate={getAllReactions}
-                />
-              </a>
-            </Link>
+            <ReactionCard
+              key={reaction.id}
+              reactionObj={reaction}
+              onUpdate={getAllReactions}
+            />
           ))}
         </div>
       </div>

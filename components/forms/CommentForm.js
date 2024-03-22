@@ -59,30 +59,29 @@ function PostCommentForm({ postId, obj }) {
     if (obj && obj.id) {
       updateComment(postId, payload, obj.id)
         .then(() => {
-          console.log('comment updated successfully');
           router.push(`/post/${postId}`);
         })
-        .catch((error) => console.error('Error updating post:', error));
+        .catch((error) => console.error('Error updating comment:', error));
     } else {
       postComment(postId, payload)
         .then(() => {
-          console.log('comment created successfully');
           router.push(`/post/${postId}`);
-          window.location.reload();
+          // window.location.reload();
         })
-        .catch((error) => console.error('Error creating post:', error));
+        .then(() => setShow(false))
+        .catch((error) => console.error('Error creating comment:', error));
     }
   };
 
   return (
     <>
-      <Button variant="dark" size="lg" className="mt-3 mb-3" onClick={handleShow}>
-        Comment
+      <Button variant="light" size="lg" className="mt-3 mb-3" onClick={handleShow}>
+        Leave a comment
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit} className="p-3">
-          <Form.Group className="mb-3 d-flex row" controlId="formBasicEmail">
+          <Form.Group className="mb-3 d-flex row" controlId="formBasicInput">
             <Form.Label className="text-black">Leave a comment</Form.Label>
             <Form.Text className="secondary mb-3">Make sure you follow the rules before posting a comment publicly.<br />Rules: Be nice.</Form.Text>
             <Form.Control

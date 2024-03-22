@@ -13,13 +13,13 @@ function ReactionCard({ reactionObj, onUpdate }) {
 
   return (
     <Card key={reactionObj.id} border="dark" style={{ width: '18rem' }}>
-      <div className="d-flex justify-content-center mx-4 mb-1 mt-2">
+      <div className="d-flex justify-content-center mx-4 mb-2 mt-2">
         <h5>{reactionObj.label}</h5>
       </div>
       <Card.Text>
         <img src={reactionObj.image} alt="Uploaded reaction" width={100} height={100} />
       </Card.Text>
-      <Button variant="danger" className="w-30 m-auto mb-1 mt-1" onClick={removeReaction}>Delete</Button>
+      <Button variant="danger" className="w-30 m-auto mt-2 mb-3" onClick={removeReaction}>Delete</Button>
     </Card>
   );
 }
