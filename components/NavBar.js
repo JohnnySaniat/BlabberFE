@@ -40,6 +40,9 @@ export default function NavBar() {
             <Link passHref href="/tags">
               <Nav.Link>Tag Manager</Nav.Link>
             </Link>
+            <Link passHref href="/reactions">
+              <Nav.Link>Reaction Manager</Nav.Link>
+            </Link>
             <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
