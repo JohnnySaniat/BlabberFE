@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
@@ -19,15 +20,19 @@ function ViewReactions() {
     <>
       <div className="text-center my-4">
         <Link href="http://localhost:3000/reaction/new" passHref>
-          <Button variant="dark" size="lg">CREATE REACTION</Button>
+          <Button variant="dark" size="lg">Create Reaction</Button>
         </Link>
         <div className="d-flex flex-wrap justify-content-center mt-3 gap-3">
           {reactions.map((reaction) => (
-            <ReactionCard
-              key={reaction.id}
-              reactionObj={reaction}
-              onUpdate={getAllReactions}
-            />
+            <Link href={`/reaction/${reaction.id}`} passHref>
+              <a>
+                <ReactionCard
+                  key={reaction.id}
+                  reactionObj={reaction}
+                  onUpdate={getAllReactions}
+                />
+              </a>
+            </Link>
           ))}
         </div>
       </div>

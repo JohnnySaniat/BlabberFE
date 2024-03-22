@@ -76,8 +76,8 @@ function PostCommentForm({ postId, obj }) {
 
   return (
     <>
-      <Button variant="dark" className="mt-3 mb-3" onClick={handleShow}>
-        Leave a comment
+      <Button variant="dark" size="lg" className="mt-3 mb-3" onClick={handleShow}>
+        Comment
       </Button>
 
       <Modal show={show} onHide={handleClose}>

@@ -12,18 +12,20 @@ function CommentCard({ commentObj }) {
   };
 
   return (
-    <Card key={commentObj.id} border="dark" style={{ width: '18rem' }}>
-      <div className="d-flex justify-content-between mx-4 mb-1 mt-2">
-        <h5>{commentObj.author}</h5>
-        <h5>{commentObj.createdOn}</h5>
-      </div>
-      <Card.Body>
-        <Card.Text>
+    <div className="d-flex justify-content-center mb-4">
+      <Card key={commentObj.id} border="dark" className="text-white" style={{ width: '1000px', backgroundColor: '#333' }}>
+        <div className="d-flex gap-3 mx-3 mb-1 mt-2">
+          <h5>{commentObj.author}</h5>
+          <span className="circle" />
+          <h5 className="silent">{commentObj.createdOn}</h5>
+        </div>
+        <hr className="splitter" />
+        <p className="text-white mx-3" style={{ backgroundImage: 'none' }}>
           {commentObj.content}
-        </Card.Text>
-      </Card.Body>
-      <Button variant="danger" className="w-30 m-auto mb-1 mt-1" onClick={removeComment}>Delete</Button>
-    </Card>
+        </p>
+        <Button variant="dark" className="w-30 mb-2 mt-1 m-auto" style={{ position: 'relative', left: '450px' }} onClick={removeComment}>Delete</Button>
+      </Card>
+    </div>
   );
 }
 
