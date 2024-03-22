@@ -43,12 +43,12 @@ export default function Tags() {
   return (
     <div>
       {editForm ? (
-        <>
+        <div className="edit-tag">
           <TagForm tagObj={tObj} onUpdate={onUpdate} />
           <p style={{ cursor: 'pointer' }} onClick={cancelClick}>Cancel</p>
-        </>
+        </div>
       ) : null }
-      <Table striped bordered hover>
+      <Table className="tag-table" striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -63,8 +63,8 @@ export default function Tags() {
             <tr key={tag.id}>
               <td>{index + 1}</td>
               <td>{tag.label}</td>
-              <td><Button variant="primary" type="click" onClick={() => editTag(tag.id)}>Edit</Button></td>
-              <td><Button variant="primary" type="click" onClick={() => deleteTagCall(tag.id)}>Delete</Button></td>
+              <td><Button variant="secondary" type="click" onClick={() => editTag(tag.id)}>Edit</Button></td>
+              <td><Button variant="danger" type="click" onClick={() => deleteTagCall(tag.id)}>Delete</Button></td>
             </tr>
 
           ))}

@@ -36,7 +36,7 @@ export default function TagForm({ tagObj, onUpdate }) {
         <Card.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>{formInput.id === -1 ? 'Create a tag' : 'Update your tag'}</Form.Label>
+              <Form.Label>{formInput.id ? 'Update your tag' : 'Create a tag'}</Form.Label>
               <Form.Control
                 type="text"
                 name="label"
@@ -46,8 +46,8 @@ export default function TagForm({ tagObj, onUpdate }) {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              {formInput.id === -1 ? 'Create' : 'Update'}
+            <Button variant="danger" type="submit">
+              {formInput.id ? 'Update' : 'Create'}
             </Button>
           </Form>
         </Card.Body>

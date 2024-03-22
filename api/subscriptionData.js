@@ -1,4 +1,4 @@
-import { clientCredentials } from "../utils/client";
+import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
@@ -10,21 +10,21 @@ const newSubscription = (payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-  .then((response) => response.json())
-  .then((data) => resolve(data))
-  .catch(reject);
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
 });
 
 const getSubscriptionsByUser = (userId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/subscriptions/${userid}`, {
+  fetch(`${endpoint}/subscriptions/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-  .then((response) => response.json())
-  .then((data) => resolve(Object.values(data)))
-  .catch(reject);
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
 });
 
 const removeSubscription = (userId, authorId) => new Promise((resolve, reject) => {
@@ -34,8 +34,8 @@ const removeSubscription = (userId, authorId) => new Promise((resolve, reject) =
       'Content-Type': 'application/json',
     },
   })
-  .then(resolve)
-  .catch(reject);
+    .then(resolve)
+    .catch(reject);
 });
 
 export {

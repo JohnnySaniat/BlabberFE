@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { newUser, updateUser } from '../../api/userData';
@@ -23,11 +23,17 @@ function RegisterForm({ userObj, onUpdate }) {
     e.preventDefault();
 
     if (userObj.id) {
-      updateUser(user.id, formData)?.then(onUpdate);
+      updateUser(userObj.id, formData)?.then(onUpdate);
     } else {
       newUser({ uid: user.uid, ...formData })?.then(onUpdate);
     }
   };
+
+  useEffect(() => {
+    if (userObj.id) {
+      setFormData(userObj);
+    }
+  }, [userObj]);
 
   return (
     <Form onSubmit={handleSubmit}>
