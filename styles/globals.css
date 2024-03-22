@@ -10,7 +10,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: #C2DEDE;
   text-decoration: none;
 }
 
@@ -120,4 +120,39 @@ div.card-body {
 
 .post-card-button {
   margin: 10px;
+}
+
+.profile {
+  display: flex;
+}
+
+.subs {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+.userCard {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+.create-sub {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.new-sub {
+  margin-bottom: 20px;
+}
+
+.sub-card {
+  margin-bottom: 10px;
+}
+
+.tag-table {
+  margin-top: 25px;
+}
+
+.edit-tag {
+  margin-top: 25px;
 }
