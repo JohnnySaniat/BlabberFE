@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { deleteComment } from '../../api/commentData';
+import PostCommentForm from '../forms/CommentForm';
 
 function CommentCard({ commentObj }) {
   const removeComment = () => {
@@ -23,7 +24,10 @@ function CommentCard({ commentObj }) {
         <p className="text-white mx-3" style={{ backgroundImage: 'none' }}>
           {commentObj.content}
         </p>
-        <Button variant="dark" className="w-30 mb-2 mt-1 m-auto" style={{ position: 'relative', left: '450px' }} onClick={removeComment}>Delete</Button>
+        <div className="comment-btns">
+          <PostCommentForm obj={commentObj} />
+          <Button variant="dark" size="md" onClick={removeComment}>Delete</Button>
+        </div>
       </Card>
     </div>
   );
@@ -36,6 +40,9 @@ CommentCard.propTypes = {
     createdOn: PropTypes.string,
     author: PropTypes.string,
     postId: PropTypes.number,
+  }).isRequired,
+  obj: PropTypes.shape({
+    id: PropTypes.number,
   }).isRequired,
 };
 

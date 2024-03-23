@@ -7,7 +7,7 @@ function PostReactionCard({ reactionObj, width, height }) {
   return (
     <Card key={reactionObj.id} style={{ width: '50px', backgroundColor: 'transparent' }} className="m-auto mb-3">
       <div className="d-flex flex-column align-items-center mx-4 mb-1 mt-2">
-        <img src={reactionObj.image} alt="Uploaded reaction" width={width || 25} height={height || 25} />
+        <img src={reactionObj.image} alt="Uploaded reaction" width={width || 50} height={height || 50} />
       </div>
     </Card>
   );

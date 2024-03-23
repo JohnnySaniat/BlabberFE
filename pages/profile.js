@@ -27,7 +27,7 @@ export default function Profile() {
 
   useEffect(() => {
     getProfile();
-  }, [subscriptions]);
+  }, []);
 
   return (
     <>

@@ -34,8 +34,6 @@ function PostCommentForm({ postId, obj }) {
 
     if (obj) {
       setFormInput(obj);
-    } else {
-      setFormInput(initialState);
     }
   }, [user]);
 
@@ -61,13 +59,14 @@ function PostCommentForm({ postId, obj }) {
       updateComment(postId, payload, obj.id)
         .then(() => {
           router.push(`/post/${postId}`);
+          window.location.reload();
         })
         .catch((error) => console.error('Error updating comment:', error));
     } else {
       postComment(postId, payload)
         .then(() => {
           router.push(`/post/${postId}`);
-          window.location.reload();
+          // window.location.reload();
         })
         .then(() => setShow(false))
         .catch((error) => console.error('Error creating comment:', error));
@@ -76,8 +75,8 @@ function PostCommentForm({ postId, obj }) {
 
   return (
     <>
-      <Button variant="light" size="lg" className="mt-3 mb-3" onClick={handleShow}>
-        Leave a comment
+      <Button variant="light" size={obj && obj.id ? 'md' : 'lg'} className="mt-3 mb-3" onClick={handleShow}>
+        {obj && obj.id ? 'Update' : 'Leave a'} comment
       </Button>
 
       <Modal show={show} onHide={handleClose}>

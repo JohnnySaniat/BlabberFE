@@ -212,3 +212,13 @@ body {
   right: 40%;
   border: none;
 }
+
+.comment-btns {
+  display: flex;
+  margin: 0 auto;
+  gap: 8px;
+  height: 80px;
+  align-items: center;
+  position: relative;
+  left: 350px;
+}

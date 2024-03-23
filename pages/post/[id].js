@@ -57,7 +57,7 @@ function PostDetails() {
       </div>
       <div className="reaction-container">
         {reactionDetails[3]?.map((r) => (
-          <PostReactionCard reactionObj={r} />
+          <PostReactionCard reactionObj={r} width={25} height={25} />
         ))}
       </div>
       <div className="mt-5 d-flex justify-content-center">
