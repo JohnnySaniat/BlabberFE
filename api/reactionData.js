@@ -1,7 +1,7 @@
 const dbUrl = 'https://localhost:7193';
 
 const getReactions = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/reactions`, {
+  fetch(`${dbUrl}/reactions/all`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const getReactionsById = (id) => new Promise((resolve, reject) => {
 });
 
 const postReaction = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/reactions`, {
+  fetch(`${dbUrl}/reactions/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

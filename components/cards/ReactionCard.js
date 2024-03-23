@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { deleteReaction } from '../../api/reactionData';
 
-function ReactionCard({ reactionObj, onUpdate }) {
+function ReactionCard({ reactionObj }) {
   const removeReaction = () => {
     if (window.confirm('Remove reaction?')) {
-      deleteReaction(reactionObj.id).then(() => onUpdate());
+      deleteReaction(reactionObj.id).then(window.location.reload());
     }
   };
 
@@ -30,7 +30,7 @@ ReactionCard.propTypes = {
     label: PropTypes.string,
     image: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  // onUpdate: PropTypes.func.isRequired,
 };
 
 export default ReactionCard;
