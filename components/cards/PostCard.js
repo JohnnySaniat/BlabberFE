@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
@@ -33,22 +34,25 @@ function PostCard({ post, onUpdate }) {
   const postCategory = allCategories.find((category) => category.id === post.categoryId);
 
   return (
-    <Card className="complete-post-card" style={{ width: '22rem', margin: '20px' }}>
-      <Card.Img variant="top" src={post.image} alt={post.title} style={{ height: '215px' }} />
-      <Card.Body>
-        <Card.Title className="card-title">{post.title}</Card.Title>
-        <Card.Text className="card-content">{post.content}</Card.Text>
-        <p className="card-date"><strong>Date:</strong> {new Date(post.publicationDate).toLocaleDateString()}</p>
-        <p className="card-category"><strong>Category:</strong> {postCategory ? postCategory.label : 'Unknown'}</p>
-
-        <Link href={`/post/edit/${post.id}`} passHref>
-          <Button className="post-card-button" variant="secondary">EDIT</Button>
-        </Link>
-        <Button className="post-card-button" variant="danger" onClick={() => handleDelete(post.id)}>
-          Delete
-        </Button>
-      </Card.Body>
-    </Card>
+    <Link href={`/post/${post.id}`} passHref>
+      <a>
+        <Card className="complete-post-card" style={{ width: '22rem', margin: '20px' }}>
+          <Card.Img variant="top" src={post.image} alt={post.title} style={{ height: '215px' }} />
+          <Card.Body>
+            <Card.Title className="card-title">{post.title}</Card.Title>
+            <Card.Text className="card-content">{post.content}</Card.Text>
+            <p className="card-date"><strong>Date:</strong> {new Date(post.publicationDate).toLocaleDateString()}</p>
+            <p className="card-category"><strong>Category:</strong> {postCategory ? postCategory.label : 'Unknown'}</p>
+            <Link href={`/post/edit/${post.id}`} passHref>
+              <Button className="post-card-button" variant="secondary">EDIT</Button>
+            </Link>
+            <Button className="post-card-button" variant="danger" onClick={() => handleDelete(post.id)}>
+              Delete
+            </Button>
+          </Card.Body>
+        </Card>
+      </a>
+    </Link>
   );
 }
 

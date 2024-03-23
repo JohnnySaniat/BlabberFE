@@ -6,8 +6,8 @@ import {
 import { useRouter } from 'next/router';
 import { getAllCategories } from '../../api/categoryData';
 import { useAuth } from '../../utils/context/authContext';
-import getUserDetails from '../../api/userData';
 import { updatePostById, createPost } from '../../api/postData';
+import { getUserDetails } from '../../api/userData';
 
 const initialState = {
   title: '',

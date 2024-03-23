@@ -20,6 +20,8 @@ function Home() {
     getUserDetails(user.uid)?.then(setCurrentUser);
   };
 
+  console.log(currentUser);
+
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -32,8 +34,8 @@ function Home() {
     >
       {currentUser ? (
         <>
-          <h1>Hello {user.fbUser.displayName}! </h1>
-          <p>Your Bio: {user.bio}</p>
+          <h1>Hello, {currentUser.firstName} {currentUser.lastName}! </h1>
+          <p>Your Bio: {currentUser.bio}</p>
           <p>Click the button below to logout!</p>
           <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
             Sign Out

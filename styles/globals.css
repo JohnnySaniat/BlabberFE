@@ -156,3 +156,69 @@ div.card-body {
 .edit-tag {
   margin-top: 25px;
 }
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.splitter {
+  border-bottom: 3px solid black;
+  position: relative;
+  bottom: 10px;
+}
+
+.circle {
+  border: 3px solid black;
+  border-radius: 50%;
+  height: 1px;
+  display: flex;
+  position: relative;
+  top: 10px;
+}
+
+.content-box {
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: #131313;
+}
+
+.expansive {
+  width: 200px;
+  height: auto;
+  transition: transform 1s ease, filter 0.5s ease;
+  filter: blur(2px);
+}
+
+.expansive:hover {
+  width: auto;
+  filter: blur(0);
+}
+
+.blank {
+  border: 0;
+  background-color: transparent;
+  width: auto;
+}
+
+.blank:hover {
+  background-color: none;
+}
+
+.reaction-container {
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  right: 40%;
+  border: none;
+}
+
+.comment-btns {
+  display: flex;
+  margin: 0 auto;
+  gap: 8px;
+  height: 80px;
+  align-items: center;
+  position: relative;
+  left: 350px;
+}
